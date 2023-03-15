@@ -15,5 +15,27 @@ class Search:
             return total - 1
 
     def duplicate_count_binary(self, num):
-        # implement binary search duplicate count here
-        pass
+        start = 0
+        end = len(self.lst) - 1
+        dupes = 0
+        while start <= end:
+            mid = (start + end) // 2
+
+            if self.lst[mid] == num:
+                i = mid - 1
+                while i >= 0 and self.lst[i] == num:
+                    dupes += 1
+                    i -= 1
+
+                j = mid + 1
+                while j <= len(self.lst) - 1 and self.lst[j] == num:
+                    dupes += 1
+                    j += 1
+
+                return dupes
+            elif self.lst[mid] < num:
+                start = mid + 1
+            else:
+                end = mid - 1
+
+        return 0
